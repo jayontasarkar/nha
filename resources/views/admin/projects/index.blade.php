@@ -1,8 +1,8 @@
 @extends('layouts.backend.master')
 
-@section('ptitle', 'DASHBOARD PAGE')
+@section('ptitle', 'LIST PROJECTS')
 
-@section('ctitle', 'ADMIN DASHBOARD PAGE')
+@section('ctitle', 'ALL PROJECTS PAGE')
 
 @section('content')
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores neque nesciunt aliquam nisi aspernatur et architecto excepturi, voluptatum fugiat quam sit porro numquam! Esse, tempore, facilis totam quidem velit reprehenderit beatae dicta, quibusdam sit quas perferendis porro qui. Vel amet molestias ex dolore consequatur delectus, porro, asperiores expedita laborum non.

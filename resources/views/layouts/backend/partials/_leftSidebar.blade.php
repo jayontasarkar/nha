@@ -6,7 +6,9 @@
         </div>
         <div class="info-container" style="padding-top: 50px;">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
-            <div class="email" style="padding-left: 42px;">john.doe@example.com</div>
+            <div class="email" style="padding-left: 42px;">
+                {{ $loggedInAs->name }}
+            </div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
@@ -36,42 +38,51 @@
     <div class="menu">
         <ul class="list">
             <li class="header"></li>
-            <li class="active">
-                <a href="../../index.html">
+            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="material-icons">home</i>
-                    <span>Home</span>
+                    <span>Admin Dashboard</span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">widgets</i>
-                    <span>Widgets</span>
+                    <i class="material-icons">contacts</i>
+                    <span>User Management</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
-                        <a href="../../pages/widgets/cards/basic.html">Basic</a>
+                    <li class="{{ Request::is('users') ? 'active' : '' }}">
+                        <a href="{{ route('users.index') }}">List All Users</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <span>Infobox</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="../../pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                            </li>
-                            <li>
-                                <a href="../../pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                            </li>
-                            <li>
-                                <a href="../../pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                            </li>
-                            <li>
-                                <a href="../../pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                            </li>
-                            <li>
-                                <a href="../../pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                            </li>
-                        </ul>
+                    <li class="{{ Request::is('users/create') ? 'active' : '' }}">
+                        <a href="{{ route('users.create') }}">Create New User</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{ Request::segment(1) == 'roles' ? 'active' : '' }}">
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">contacts</i>
+                    <span>Roles Management</span>
+                </a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::is('roles') ? 'active' : '' }}">
+                        <a href="{{ route('roles.index') }}">List All Roles</a>
+                    </li>
+                    <li class="{{ Request::is('roles/create') ? 'active' : '' }}">
+                        <a href="{{ route('roles.create') }}">Create New Role</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{ Request::segment(1) == 'projects' ? 'active' : '' }}">
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">contacts</i>
+                    <span>Project Management</span>
+                </a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::is('projects') ? 'active' : '' }}">
+                        <a href="{{ route('projects.index') }}">List All Projects</a>
+                    </li>
+                    <li class="{{ Request::is('projects/create') ? 'active' : '' }}">
+                        <a href="{{ route('projects.create') }}">Create New Project</a>
                     </li>
                 </ul>
             </li>
