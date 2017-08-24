@@ -15,7 +15,7 @@
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet" />
 </head>
 
-<body class="theme-green">
+<body class="theme-blue">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">

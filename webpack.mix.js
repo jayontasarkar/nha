@@ -13,8 +13,9 @@ mix.scripts([
 	'resources/assets/theme/plugins/bootstrap/js/bootstrap.js',
 	'resources/assets/theme/plugins/bootstrap-select/js/bootstrap-select.js',
 	'resources/assets/theme/plugins/jquery-slimscroll/jquery.slimscroll.js',
-	'resources/assets/theme/plugins/jquery-slimscroll/jquery.slimscroll.js',
+	'resources/assets/theme/plugins/jquery-validation/jquery.validate.js',
 	'resources/assets/theme/plugins/node-waves/waves.js',
 	'resources/assets/theme/js/admin.js',
+	'resources/assets/theme/js/pages/examples/sign-in.js',
 	'resources/assets/theme/js/demo.js'
 ], 'public/js/backend.js');
