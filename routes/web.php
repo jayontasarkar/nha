@@ -22,8 +22,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
     // Software Settings
     Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
-        Route::resource('/users', 'UsersController', ['as' => 'settings']);
+        Route::get('/users/toggle/{user}', 'UsersController@destroy')->name('settings.users.destroy');
+        Route::resource('/users', 'UsersController', ['as' => 'settings', 'except' => 'destroy']);
+
         Route::resource('/roles', 'RolesController', ['as' => 'settings']);
+
         Route::resource('/projects', 'ProjectsController', ['as' => 'settings']);
     });
 });

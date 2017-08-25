@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Settings;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserManagementFormRequest;
 
 class UsersController extends Controller
 {
@@ -13,9 +14,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->get();
+        $users = User::where('id', '!=', $request->user()->id)
+            ->with('role')->latest()->get();
 
         return view('admin.settings.users.index', compact('users'));
     }
@@ -31,14 +33,17 @@ class UsersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created login user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\UserManagementFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserManagementFormRequest $request)
     {
-        //
+        User::create($request->all());
+
+        return redirect()->route('settings.users.index')
+            ->withSuccess('New login user created successfully!');
     }
 
     /**
@@ -58,21 +63,24 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.settings.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\UserManagementFormRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserManagementFormRequest $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return redirect()->route('settings.users.index')
+            ->withSuccess('User info updated successfully!');
     }
 
     /**
@@ -81,8 +89,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $status = ($user->status == 1 ? 2 : 1);
+        $user->status = $status;
+        $user->save();
+
+        return back()->withSuccess(
+            'User Status ' . ($status == 2 ? 'suspended' : 'activated') . ' successfully'
+        );
     }
 }

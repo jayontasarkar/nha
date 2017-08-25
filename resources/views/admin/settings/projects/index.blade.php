@@ -5,5 +5,15 @@
 @section('ctitle', 'ALL PROJECTS PAGE')
 
 @section('content')
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores neque nesciunt aliquam nisi aspernatur et architecto excepturi, voluptatum fugiat quam sit porro numquam! Esse, tempore, facilis totam quidem velit reprehenderit beatae dicta, quibusdam sit quas perferendis porro qui. Vel amet molestias ex dolore consequatur delectus, porro, asperiores expedita laborum non.
+    @if(count($projects))
+		@include('admin.settings.projects.views._table')
+    @else
+		<h3 class="text-center">No result was found to display. <a class="btn btn-link" href="{{ route('settings.projects.create') }}"> Create new one</a></h3>
+    @endif
+@endsection
+
+@section('script')
+	@include('layouts.backend.common._datatable', [
+		'columns' => [ 0, 1, 2, 3, 4 ]
+	])
 @endsection

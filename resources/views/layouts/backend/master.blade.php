@@ -61,6 +61,7 @@
             </div>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    @include('layouts.backend.common.flash')
                     <div class="card">
                         <div class="header">
                             <h2>
@@ -78,6 +79,18 @@
 
     <!-- Jquery Core Js -->
     <script src="{{ asset('js/backend.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.flash-msg').delay(7000).fadeOut(1000);
+
+            $('.datepicker').bootstrapMaterialDatePicker({
+                format: 'DD MMMM, YYYY',
+                clearButton: true,
+                weekStart: 1
+            });
+        });
+    </script>
+    @yield('script')
 
 </body>
 

@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Traits\Eloquent\DateIntervalTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use DateIntervalTrait;
     /**
      * Fields that can be mass assigned.
      *

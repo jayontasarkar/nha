@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Settings;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Project;
+use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -14,7 +15,10 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.projects.index');
+        $projects = Project::orderBy('starting_date', 'desc')
+            ->orderBy('ending_date', 'desc')->get();
+
+        return view('admin.settings.projects.index', compact('projects'));
     }
 
     /**
@@ -35,7 +39,10 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Project::create($request->all());
+
+        return redirect()->route('settings.projects.index')
+            ->withSuccess('New project created successfully');
     }
 
     /**
