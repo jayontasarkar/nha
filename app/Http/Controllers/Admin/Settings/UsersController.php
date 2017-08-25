@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Settings;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProjectsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return view('admin.projects.index');
+        $users = User::latest()->get();
+
+        return view('admin.settings.users.index', compact('users'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        return view('admin.settings.users.create');
     }
 
     /**

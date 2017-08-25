@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Settings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class RolesController extends Controller
+class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return view('admin.roles.index');
+        return view('admin.settings.projects.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        return view('admin.settings.projects.create');
     }
 
     /**

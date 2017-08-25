@@ -20,8 +20,10 @@ Route::group(['namespace' => 'Auth'], function () {
  */
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
-
-    Route::resource('/users', 'UsersController');
-    Route::resource('/roles', 'RolesController');
-    Route::resource('/projects', 'ProjectsController');
+    // Software Settings
+    Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
+        Route::resource('/users', 'UsersController', ['as' => 'settings']);
+        Route::resource('/roles', 'RolesController', ['as' => 'settings']);
+        Route::resource('/projects', 'ProjectsController', ['as' => 'settings']);
+    });
 });

@@ -44,45 +44,50 @@
                     <span>Admin Dashboard</span>
                 </a>
             </li>
-            <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}">
+            <li class="{{ Request::segment(1) == 'settings' ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">contacts</i>
-                    <span>User Management</span>
+                    <i class="material-icons">settings_applications</i>
+                    <span>Software Settings</span>
                 </a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::is('users') ? 'active' : '' }}">
-                        <a href="{{ route('users.index') }}">List All Users</a>
+                    <li class="{{ Request::segment(2) == 'users' ? 'active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <span>Login Settings</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{ Request::is('settings/users') ? 'active' : '' }}">
+                                <a href="{{ route('settings.users.index') }}">All Login Users</a>
+                            </li>
+                            <li class="{{ Request::is('settings/users/create') ? 'active' : '' }}">
+                                <a href="{{ route('settings.users.create') }}">New Login Users</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="{{ Request::is('users/create') ? 'active' : '' }}">
-                        <a href="{{ route('users.create') }}">Create New User</a>
+                    <li class="{{ Request::segment(2) == 'projects' ? 'active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <span>Project Settings</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{ Request::is('settings/projects') ? 'active' : '' }}">
+                                <a href="{{ route('settings.projects.index') }}">List All Projects</a>
+                            </li>
+                            <li class="{{ Request::is('settings/projects/create') ? 'active' : '' }}">
+                                <a href="{{ route('settings.projects.create') }}">Create New Project</a>
+                            </li>
+                        </ul>
                     </li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) == 'roles' ? 'active' : '' }}">
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">contacts</i>
-                    <span>Roles Management</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::is('roles') ? 'active' : '' }}">
-                        <a href="{{ route('roles.index') }}">List All Roles</a>
-                    </li>
-                    <li class="{{ Request::is('roles/create') ? 'active' : '' }}">
-                        <a href="{{ route('roles.create') }}">Create New Role</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) == 'projects' ? 'active' : '' }}">
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">contacts</i>
-                    <span>Project Management</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::is('projects') ? 'active' : '' }}">
-                        <a href="{{ route('projects.index') }}">List All Projects</a>
-                    </li>
-                    <li class="{{ Request::is('projects/create') ? 'active' : '' }}">
-                        <a href="{{ route('projects.create') }}">Create New Project</a>
+                    <li class="{{ Request::segment(2) == 'roles' ? 'active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <span>Permission Settings</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{ Request::is('settings/roles') ? 'active' : '' }}">
+                                <a href="{{ route('settings.roles.index') }}">All Permissions</a>
+                            </li>
+                            <li class="{{ Request::is('settings/roles/create') ? 'active' : '' }}">
+                                <a href="{{ route('settings.roles.create') }}">New Permission</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
