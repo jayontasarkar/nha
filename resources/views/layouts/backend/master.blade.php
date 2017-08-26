@@ -84,7 +84,7 @@
             $('.flash-msg').delay(7000).fadeOut(1000);
 
             $('.datepicker').bootstrapMaterialDatePicker({
-                format: 'DD MMMM, YYYY',
+                format: 'MMMM DD, YYYY',
                 clearButton: true,
                 weekStart: 1
             });
