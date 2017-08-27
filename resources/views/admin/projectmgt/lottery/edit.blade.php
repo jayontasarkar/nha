@@ -18,6 +18,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	  $('.searchable').multiSelect({
+	  	dblClick: true,
 	  selectableHeader: "<p style='font-size: 1.3em;text-align: center;'>List of Lottery Loosers</p><input type='text' style='width: 100%;' autocomplete='off' placeholder='Search By Name'>",
 	  selectionHeader: "<p style='font-size: 1.3em;text-align: center;'>List of Lottery Winners</p><input type='text' style='width: 100%;' autocomplete='off' placeholder='Search By Name'>",
 	  afterInit: function(ms){

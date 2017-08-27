@@ -72,7 +72,7 @@
         <div class="col-md-6">
             <div class="form-group form-float">
                 <div class="form-line {{ $errors->first('capacity') ? 'error' : '' }}">
-                    <input type="number" name="capacity" class="form-control" value="{{ old('capacity') ? : $project->capacity }}">
+                    <input type="number" name="capacity" class="form-control" value="{{ old('capacity') }}">
                     <label class="form-label">Project Capacity</label>
                 </div>
                 @include('layouts.backend.common.formError', ['key' => 'capacity'])

@@ -3,6 +3,11 @@
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('/project-management/test', function () {
+    return view('test');
+});Route::get('/project-management/project', function () {
+    return view('project');
+});
 
 /**
  * Authentication Routes
