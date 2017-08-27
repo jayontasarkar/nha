@@ -59,6 +59,9 @@
             <div class="block-header">
                 <h2>@yield('ptitle')</h2>
             </div>
+            @if(Request::is('dashboard'))
+                @include('layouts.backend.common.widgets')
+            @endif
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     @include('layouts.backend.common.flash')
@@ -90,6 +93,7 @@
             });
         });
     </script>
+
     @yield('script')
 
 </body>

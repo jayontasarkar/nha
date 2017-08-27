@@ -1,26 +1,39 @@
-@inject('roles', 'App\Http\Services\AuthorizationService')
-
-<form action="{{ route('settings.users.update',[$user]) }}" method="POST" role="form" id="form_advanced_validation">
+<form action="{{ route('settings.projects.update', [$project->id]) }}" method="POST" role="form" id="form_advanced_validation">
 	{{ csrf_field() }}
     {{ method_field('PATCH') }}
 
 	<div class="row clearfix">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group form-float">
-                <div class="form-line {{ $errors->first('name') ? 'error' : '' }}">
-                    <input type="text" name="name" class="form-control" value="{{ old('name') ? : $user->name }}">
-                    <label class="form-label">User's FullName</label>
+                <div class="form-line {{ $errors->first('title') ? 'error' : '' }}">
+                    <input type="text" name="title" class="form-control" value="{{ old('title') ? : $project->title }}">
+                    <label class="form-label">Project Title</label>
                 </div>
-                @include('layouts.backend.common.formError', ['key' => 'name'])
+                @include('layouts.backend.common.formError', ['key' => 'title'])
             </div>
         </div>
-        <div class="col-md-6">
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-12">
             <div class="form-group form-float">
-                <div class="form-line {{ $errors->first('phone') ? 'error' : '' }}">
-                    <input type="text" name="phone" class="form-control" value="{{ old('phone') ? : $user->phone}}">
-                    <label class="form-label">Mobile No.</label>
+                <div class="form-line {{ $errors->first('desc') ? 'desc' : '' }}">
+                    <textarea name="desc" class="form-control" rows="4">{{ nl2br(old('desc') ? : $project->desc) }}</textarea>
+                    <label class="form-label">Project Description</label>
                 </div>
-                @include('layouts.backend.common.formError', ['key' => 'phone'])
+                @include('layouts.backend.common.formError', ['key' => 'desc'])
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="form-group form-float">
+                <div class="form-line {{ $errors->first('location') ? 'error' : '' }}">
+                    <input type="text" name="location" class="form-control" value="{{ old('location') ? : $project->location }}">
+                    <label class="form-label">Project Location</label>
+                </div>
+                @include('layouts.backend.common.formError', ['key' => 'location'])
             </div>
         </div>
     </div>
@@ -28,28 +41,50 @@
     <div class="row clearfix">
         <div class="col-md-6">
             <div class="form-group form-float">
-                <div class="form-line {{ $errors->first('designation') ? 'designation' : '' }}">
-                    <input type="text" name="designation" class="form-control" value="{{ old('designation') ? : $user->designation }}">
-                    <label class="form-label">Official Designation</label>
+                <div class="form-line {{ $errors->first('starting_date') ? 'error' : '' }}">
+                    <input type="text" name="starting_date" class="datepicker form-control" placeholder="Please choose project starting date..." data-dtp="dtp_DopE2" value="{{ old('starting_date') ? : $project->starting_date->format('M d, Y') }}">
                 </div>
-                @include('layouts.backend.common.formError', ['key' => 'designation'])
+                @include('layouts.backend.common.formError', ['key' => 'starting_date'])
             </div>
         </div>
         <div class="col-md-6">
-            <select class="form-control show-tick" name="role_id" tabindex="-98" data-live-search="true">
-                <option value="">-- Please select authorization type --</option>
-                @foreach($roles->get() as $role)
-                    <option value="{{ $role->id }}" {{ (old('role_id') ? : $user->role_id) == $role->id ? 'selected' : '' }}>
-                        {{ $role->title }}
-                    </option>
-                @endforeach
-            </select>
-            <span style="font-size: 11px; color: #F44336; margin-top: 8px; font-weight: normal;">
-            	@include('layouts.backend.common.formError', ['key' => 'role_id'])
-            </span>
+            <div class="form-group form-float">
+                <div class="form-line {{ $errors->first('ending_date') ? 'error' : '' }}">
+                    <input type="text" name="ending_date" class="datepicker form-control" placeholder="Please choose project estimated ending date..." data-dtp="dtp_DopE2" value="{{ old('ending_date') ? : $project->ending_date->format('M d, Y') }}">
+                </div>
+                @include('layouts.backend.common.formError', ['key' => 'ending_date'])
+            </div>
         </div>
     </div>
 
+    <div class="row clearfix">
+        <div class="col-md-6">
+            <div class="form-group form-float">
+                <div class="form-line {{ $errors->first('status') ? 'error' : '' }}">
+                    <select name="status" class="form-control">
+                        <option value="">___ Select Current Status ___</option>
+                        <option value="0" {{ (old('status') ? : $project->status) == 0 ? 'selected' : '' }}>Work in progress</option>
+                        <option value="1" {{ (old('status') ? : $project->status) == 1 ? 'selected' : '' }}>Successfully Completed</option>
+                    </select>
+                </div>
+                @include('layouts.backend.common.formError', ['key' => 'status'])
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-float">
+                <div class="form-line {{ $errors->first('capacity') ? 'error' : '' }}">
+                    <input type="number" name="capacity" class="form-control" value="{{ old('capacity') ? : $project->capacity }}">
+                    <label class="form-label">Project Capacity</label>
+                </div>
+                @include('layouts.backend.common.formError', ['key' => 'capacity'])
+            </div>
+        </div>
+    </div>
 
-	<button type="submit" class="btn btn-primary">Save Changes</button>
+    <div class="row">
+        <div class="col-md-offset-5 col-md-5">
+            <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+        </div>
+    </div>
+
 </form>

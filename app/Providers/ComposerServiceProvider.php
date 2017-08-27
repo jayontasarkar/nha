@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\AuthenticatedUserComposer;
+use App\Http\ViewComposers\NotificationComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', AuthenticatedUserComposer::class);
+        View::composer('*', NotificationComposer::class);
     }
 
     /**
@@ -26,5 +28,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AuthenticatedUserComposer::class);
+        $this->app->singleton(NotificationComposer::class);
     }
 }

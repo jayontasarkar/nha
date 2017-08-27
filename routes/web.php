@@ -29,4 +29,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth']], function () {
 
         Route::resource('/projects', 'ProjectsController', ['as' => 'settings']);
     });
+
+    // Project Management
+    Route::get('/project-management', 'ProjectManagementController@index')->name('projectmgt.index');
+    Route::get('/project-management/{project}', 'ProjectManagementController@show')->name('projectmgt.show');
+    Route::get('/project-management/{project}', 'ProjectManagementController@show')->name('projectmgt.show');
+    Route::get('project-management/lottery/{project}/edit', 'LotteryManagementController@edit')->name('lottery.edit');
+
+    // Notifications
+    Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 });

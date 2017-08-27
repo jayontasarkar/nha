@@ -1,13 +1,13 @@
 @extends('layouts.backend.master')
 
-@section('ptitle', 'LIST USERS')
+@section('ptitle', 'Edit Project')
 
-@section('ctitle', 'ALL USERS PAGE')
+@section('ctitle', 'Edit Project: ' . $project->title)
 
 @section('content')
-    @if($user)
-		@include('admin.settings.users.views._edit')
+    @if($project)
+		@include('admin.settings.projects.views._edit')
     @else
-		<h3 class="text-center">No result was found to display. <a class="btn btn-link" href="{{ route('settings.users.create') }}"> Create new one</a></h3>
+		<h3 class="text-center">No result was found to display. <a class="btn btn-link" href="{{ route('settings.projects.create') }}"> Create new one</a></h3>
     @endif
 @endsection

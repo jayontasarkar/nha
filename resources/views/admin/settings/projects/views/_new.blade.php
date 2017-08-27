@@ -70,9 +70,19 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group form-float" style="padding-right: 160px;">
-                <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+            <div class="form-group form-float">
+                <div class="form-line {{ $errors->first('capacity') ? 'error' : '' }}">
+                    <input type="number" name="capacity" class="form-control" value="{{ old('capacity') ? : $project->capacity }}">
+                    <label class="form-label">Project Capacity</label>
+                </div>
+                @include('layouts.backend.common.formError', ['key' => 'capacity'])
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-5 col-md-5">
+            <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
         </div>
     </div>
 

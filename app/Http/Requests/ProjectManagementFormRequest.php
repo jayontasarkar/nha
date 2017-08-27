@@ -9,7 +9,7 @@ class ProjectManagementFormRequest extends FormRequest
 {
     protected $rules;
 
-    public function __construct(UserManagementRules $rules)
+    public function __construct(ProjectManagementRules $rules)
     {
         $this->rules = $rules;
     }

@@ -26,6 +26,7 @@ $factory->define(App\Project::class, function (Faker\Generator $faker) {
         'title' => $faker->unique()->sentence(5),
         'desc' => $faker->paragraph(3),
         'location' => $faker->city,
+        'capacity' => $faker->numberBetween(300, 1000),
         'starting_date' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now'),
         'ending_date'   => $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now'),
     ];

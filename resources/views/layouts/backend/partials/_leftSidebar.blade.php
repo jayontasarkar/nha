@@ -91,6 +91,18 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ Request::segment(1) == 'project-management' ? 'active' : '' }}">
+                <a href="{{ route('projectmgt.index') }}">
+                    <i class="material-icons">dashboard</i>
+                    <span>Project Management</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('notifications') ? 'active' : '' }}">
+                <a href="{{ route('notifications.index') }}">
+                    <i class="material-icons">bookmark</i>
+                    <span>All Notifications</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

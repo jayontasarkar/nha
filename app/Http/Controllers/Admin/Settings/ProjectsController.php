@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Settings;
 
-use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectManagementFormRequest;
 
 class ProjectsController extends Controller
 {
@@ -62,21 +63,25 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $id)
+    public function edit(Project $project)
     {
-        //
+        return view('admin.settings.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\ProjectManagementFormRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProjectManagementFormRequest $request, Project $id)
+    public function update(ProjectManagementFormRequest $request, Project $project)
     {
-        //
+        $project->update($request->all());
+
+        return redirect()->route('settings.projects.index')->withSuccess(
+            '"' . $project->title . '" project info updated successfully'
+        );
     }
 
     /**

@@ -19,7 +19,8 @@ class CreateProjectsTable extends Migration
             $table->text('desc')->nullable();
             $table->string('location', 150);
             $table->boolean('status')->default(false);
-            $table->timestamp('statring_date')->nullable();
+            $table->integer('capacity');
+            $table->timestamp('starting_date')->nullable();
             $table->timestamp('ending_date')->nullable();
             $table->timestamps();
         });

@@ -4,9 +4,7 @@
             <th>Project Title</th>
             <th>Project Location</th>
             <th>Capacity</th>
-            <th>Started On</th>
-            <th>Ended On</th>
-            <th>Current Status</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -16,22 +14,21 @@
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->location }}</td>
                 <td>{{ $project->capacity }}</td>
-                <td>{{ $project->starting_date->format('M d, Y') }}</td>
-                <td>{{ $project->ending_date->format('M d, Y') }}</td>
                 <td>
                     @if($project->status !== 1)
-                        <span class="label label-warning">Work In Progress</span>
+                        <span class="label label-warning">In Progress</span>
                     @else
-                        <span class="label label-success">Successfully Completed</span>
+                        <span class="label label-success">Completed</span>
                     @endif
                 </td>
                 <td>
                     <a class="btn btn-info btn-xs"
-                        href="{{ route('settings.projects.edit', [$project->id]) }}"
-                    >Edit</a>
+                        href="{{ route('projectmgt.show', [$project->id]) }}"
+                    >SHOW</a>
                 </td>
 
             </tr>
         @endforeach
     </tbody>
+</table>
 </table>
